@@ -1,0 +1,999 @@
+
+1.	 Hadoop install & Config in Linux 
+
+
+Update Linux operationg system
+ 
+
+
+
+Installation of java 
+ 
+Create hadoop group and user
+ 
+Install ssh
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+Install Hadoop
+ 
+https://hadoop.apache.org/releases.html 
+
+ 
+ 
+ 
+ 
+NOW INSTALL HADOOP 
+ 
+ 
+ 
+
+
+
+
+SETUP SOME CONFIGRATION FILES
+ 
+Add this configuration at the end
+ 
+#HADOOP VARIABLES START
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-i386
+export HADOOP_INSTALL=/usr/local/hadoop
+export PATH=$PATH:$HADOOP_INSTALL/bin
+export PATH=$PATH:$HADOOP_INSTALL/sbin
+export HADOOP_MAPRED_HOME=$HADOOP_INSTALL
+export HADOOP_COMMON_HOME=$HADOOP_INSTALL
+export HADOOP_HDFS_HOME=$HADOOP_INSTALL
+export YARN_HOME=$HADOOP_INSTALL
+ export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_INSTALL/lib/native
+export HADOOP_OPTS="-Djava.library.path=$HADOOP_INSTALL/lib"
+#HADOOP VARIABLES END
+
+  
+
+Here enter java path
+
+
+ 
+
+Ctrl+o then enter then ctrl+x
+
+ 
+
+
+ 
+
+Ctrl+o then enter then ctrl+x for came out from the file
+
+
+Then next 
+ 
+
+After this – http://localhost:9870/   
+Open this link in Browser, you can see hadoop dashboard.
+ 
+ 
+ /                  
+
+ 
+Need some configuration to show trash folder like
+ 
+Setting up trash folder
+https://stackoverflow.com/questions/53229221/terminal-error-zsh-permission-denied-startup-sh
+
+
+ 
+
+
+Hadoop installation and configuration’s Exicusion
+
+┌──(kali㉿kali)-[~]
+└─$ cd Desktop 
+                                                                             
+┌──(kali㉿kali)-[~/Desktop]
+└─$ mkdir share
+                                                                             
+┌──(kali㉿kali)-[~/Desktop]
+└─$ sudo mount -t vboxsf kali share
+[sudo] password for kali: 
+                                                                             
+┌──(kali㉿kali)-[~/Desktop]
+└─$ cd /share
+cd: no such file or directory: /share
+                                                                             
+┌──(kali㉿kali)-[~/Desktop]
+└─$ ls       
+share
+                                                                             
+┌──(kali㉿kali)-[~/Desktop]
+└─$ cd share 
+                                                                             
+┌──(kali㉿kali)-[~/Desktop/share]
+└─$ ls
+'ALL HAOOP INST.pdf'     'Machine Learning for Everybody – Full Course.mp4'
+ hadoop-3.3.4.tar.gz      pwdofDs
+ hadoopinstallation.pdf   splunk-7.1.0-2e75b3406c5b-linux-2.6-amd64.deb
+                                                                             
+┌──(kali㉿kali)-[~/Desktop/share]
+└─$ sudo apt-get update
+[sudo] password for kali: 
+Hit:1 http://kali.download/kali kali-rolling InRelease
+Reading package lists... Done
+          
+┌──(kali㉿kali)-[~/Desktop/share]
+└─$ sudo apt-get dist-upgrade
+                                                                 
+┌──(kali㉿kali)-[~/Desktop/share]
+└─$ sudo apt-get install default-jdk
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following package was automatically installed and is no longer required:
+  openjdk-11-jre
+Use 'sudo apt autoremove' to remove it.
+The following additional packages will be installed:
+  default-jdk-headless default-jre default-jre-headless java-common
+  libc-bin libc-dev-bin libc-l10n libc6 libc6-dev libc6-i386 libice-dev
+_____________________________________________________________________________________________________________________________________________________________________
+openjdk-amd64/bin/jhsdb to provide /usr/bin/jhsdb (jhsdb) in auto mode
+Setting up libxt-dev:amd64 (1:1.2.1-1) ...
+Setting up default-jdk (2:1.17-73) ...
+                                                                             
+┌──(kali㉿kali)-[~/Desktop/share]
+└─$ which java
+/usr/bin/java
+                                                                             
+┌──(kali㉿kali)-[~/Desktop/share]
+└─$ sudo addgroup hadoop
+Adding group `hadoop' (GID 1001) ...
+Done.
+                                                                             
+┌──(kali㉿kali)-[~/Desktop/share]
+└─$ sudo adduser --ingroup hadoop hduser
+Adding user `hduser' ...
+Adding new user `hduser' (1001) with group `hadoop' ...
+Creating home directory `/home/hduser' ...
+Copying files from `/etc/skel' ...
+New password: 
+Retype new password: 
+passwd: password updated successfully
+Changing the user information for hduser
+Enter the new value, or press ENTER for the default
+        Full Name []: 
+        Room Number []: 
+        Work Phone []: 
+        Home Phone []: 
+        Other []: 
+Is the information correct? [Y/n] y                                                                       
+┌──(kali㉿kali)-[~/Desktop/share]
+└─$ groups hduser
+hduser : hadoop
+                                                                             
+┌──(kali㉿kali)-[~/Desktop/share]
+└─$ sudo apt-get install ssh
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following package was automatically installed and is no longer required:
+  openjdk-11-jre
+Use 'sudo apt autoremove' to remove it.
+The following additional packages will be installed:
+  libssl3 openssh-client openssh-server openssh-sftp-
+Get:1 http://kali.download/kali kali-rolling/main amd64 libssl3 amd64 3.0.7-1 [2,008 kB]
+-------------------------------------------------------------------------------------------------------------------------------------------------Unpacking openssl (3.0.7-1) over (3.0.4-2) ...
+.
+ssh.socket is a disabled or a static unit not running, not starting it.
+Setting up ssh (1:9.0p1-1) ...
+Processing triggers for man-db (2.10.2-1) ...
+Processing triggers for kali-menu (2022.3.1) ...
+Processing triggers for libc-bin (2.35-4) ...                                                      
+                                                                             
+┌──(kali㉿kali)-[~/Desktop/share]
+└─$ ssh-keygen
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/kali/.ssh/id_rsa): 
+Created directory '/home/kali/.ssh'.
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /home/kali/.ssh/id_rsa
+Your public key has been saved in /home/kali/.ssh/id_rsa.pub
+The key fingerprint is:
+SHA256:GC2N7Znq2+P3g1CsO0BWR+RtUwaTUHEwRvo2FSqqamw kali@kali
+The key's randomart image is:
++---[RSA 3072]----+
+|         o++X==  |
+|       =...+.B . |
+|      +.+o+ = .  |
+|      o= +o+ o   |
+|     o. So  +    |
+|      .oo  . .   |
+|   .  o. o .     |
+|    Eo .+ o .    |
+|   o. ooo+ ...   |
++----[SHA256]-----+
+                                                                             
+┌──(kali㉿kali)-[~/Desktop/share]
+└─$ cat $HOME/.ssh/id_rsa.pub >> $HOME/.ssh/authorized_keys
+                                                                             
+┌──(kali㉿kali)-[~/Desktop/share]
+└─$ ssh localhost
+ssh: connect to host localhost port 22: Connection refused
+                                                                             
+┌──(kali㉿kali)-[~/Desktop/share]
+└─$ service ssh start        
+Failed to start ssh.service: Access denied
+See system logs and 'systemctl status ssh.service' for details.
+                                                                             
+┌──(kali㉿kali)-[~/Desktop/share]
+└─$ apt-get install ssh openssh-client openssh-server
+E: Could not open lock file /var/lib/dpkg/lock-frontend - open (13: Permission denied)
+E: Unable to acquire the dpkg frontend lock (/var/lib/dpkg/lock-frontend), are you root?
+                                                                             
+┌──(kali㉿kali)-[~/Desktop/share]
+└─$ sudo cp hadoop-3.3.4.tar.gz /home/hduser
+                                                                   
+┌──(kali㉿kali)-[~/Desktop/share]
+└─$ su hduser                               
+Password: 
+┌──(hduser㉿kali)-[/home/kali/Desktop/share]
+└─$ cd                                                                       
+┌──(hduser㉿kali)-[~]
+└─$ sudo cp hadoop-3.3.4.tar.gz /home/hduser
+[sudo] password for hduser: 
+hduser is not in the sudoers file.
+┌──(hduser㉿kali)-[~]
+└─$ su hduser                                                                
+Password: 
+┌──(hduser㉿kali)-[~]
+└─$ sudo cp hadoop-3.3.4.tar.gz /home/hduser                                 
+[sudo] password for hduser: 
+kaSorry, try again.
+[sudo] password for hduser: 
+hduser is not in the sudoers file.
+┌──(hduser㉿kali)-[~]
+└─$ su kali                                                                  
+Password: 
+┌──(kali㉿kali)-[/home/hduser]
+└─$ cd
+                                                                             
+┌──(kali㉿kali)-[~]
+└─$ sudo adduser hduser sudo
+Adding user `hduser' to group `sudo' ...
+Done.          
+ 
+                
+┌──(kali㉿kali)-[~]
+└─$ su hduser
+Password: 
+
+┌──(hduser㉿kali)-[/home/kali]
+└─$ ls
+Desktop    Downloads            Music     Public     Videos
+Documents hadoop-3.3.4.tar.gz Pictures Templates
+
+┌──(hduser㉿kali)-[/home/kali]
+└─$ sudo cp hadoop-3.3.4.tar.gz /home/hduser
+[sudo] password for hduser: 
+
+┌──(hduser㉿kali)-[/home/kali]
+└─$ cd                                                                       
+
+┌──(hduser㉿kali)-[~]
+└─$ ls                                                                       
+hadoop-3.3.4.tar.gz
+
+┌──(hduser㉿kali)-[~]
+└─$ sudo tar xvzf hadoop-3.3.4.tar.gz                                        
+hadoop-3.3.4/
+hadoop-3.3.4/licenses-binary/
+hadoop-3.3.4/licenses-binary/LICENSE-dust.txt
+hadoop-3.3.4/licenses-binary/LICENSE-re2j.txt
+hadoop-3.3.4/licenses-binary/LICENSE-slf4j.txt
+hadoop-3.3.4/licenses-binary/LICENSE-jquery.txt
+nfs/images/newwindow.png
+hadoop-3.3.4/share/doc/hadoop/hadoop-hdfs-nfs/images/h3.jpg
+
+
+┌──(hduser㉿kali)-[~]
+└─$ ls
+ hadoop-3.3.4    hadoop-3.3.4.tar.gz
+
+┌──(hduser㉿kali)-[~]
+└─$ cd hadoop-3.3.4                                                        
+
+┌──(hduser㉿kali)-[~/hadoop-3.3.4]
+└─$ ls                                                                     
+bin      lib             licenses-binary  NOTICE.txt  share
+etc      libexec         LICENSE.txt      README.txt
+include  LICENSE-binary  NOTICE-binary    sbin
+
+┌──(hduser㉿kali)-[~/hadoop-3.3.4]
+└─$ sudo mkdir -p /usr/local/hadoop
+
+┌──(hduser㉿kali)-[~/hadoop-3.3.4]
+└─$ sudo mv * /usr/local/hadoop
+
+┌──(hduser㉿kali)-[~/hadoop-3.3.4]
+└─$ cd /usr/local/hadoop
+
+┌──(hduser㉿kali)-[/usr/local/hadoop]
+└─$ ls                                                                     
+bin      lib             licenses-binary  NOTICE.txt  share
+etc      libexec         LICENSE.txt      README.txt
+include  LICENSE-binary  NOTICE-binary    sbin
+
+┌──(hduser㉿kali)-[/usr/local/hadoop]
+└─$ sudo chown -R hduser:hadoop /usr/local/hadoop
+
+NEXT CMD OPEN IN ANOTHER TERMINAL
+
+┌──(hduser㉿kali)-[~]
+└─$ update-alternatives --config java
+There are 2 choices for the alternative java (providing /usr/bin/java).
+
+  Selection    Path                                         Priority   Status
+------------------------------------------------------------
+* 0            /usr/lib/jvm/java-17-openjdk-amd64/bin/java   1711      auto mode
+  1            /usr/lib/jvm/java-11-openjdk-amd64/bin/java   1111      manual mode
+  2            /usr/lib/jvm/java-17-openjdk-amd64/bin/java   1711      manual mode
+
+Press <enter> to keep the current choice[*], or type selection number: ^C
+
+┌──(hduser㉿kali)-[~]
+└─$ sudo nano /usr/local/hadoop/etc/hadoop/hadoop-env.sh                   
+
+After licence drop this line-
+
+export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+
+or if in root then at the end-
+
+┌──(root ㉿kali)-[~]
+└─$ sudo nano /usr/local/hadoop/etc/hadoop/hadoop-env.sh                   
+
+export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+
+if in root then at the end-
+
+export HDFS_NAMENODE_USER=root
+export HDFS_DATANODE_USER=root
+export HDFS_SECONDARYNAMENODE_USER=root
+export YARN_RESOURCEMANAGER_USER=root
+export YARN_NODEMANAGER_USER=root
+
+
+┌──(hduser㉿kali)-[~]
+└─$ sudo nano ~/.bashrc  
+At end in opened file paste blow code –
+
+#HADOOP VARIABLES START
+export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+export HADOOP_INSTALL=/usr/local/hadoop
+export PATH=$PATH:$HADOOP_INSTALL/bin
+export PATH=$PATH:$HADOOP_INSTALL/sbin
+export HADOOP_MAPRED_HOME=$HADOOP_INSTALL
+export HADOOP_COMMON_HOME=$HADOOP_INSTALL
+export HADOOP_HDFS_HOME=$HADOOP_INSTALL
+export YARN_HOME=$HADOOP_INSTALL
+export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_INSTALL/lib/native
+export HADOOP_OPTS="-Djava.library.path=$HADOOP_INSTALL/lib"
+#HADOOP VARIABLES END           
+┌──(hduser㉿kali)-[~]
+└─$ source ~/.bashrc
+
+
+┌──(hduser㉿kali)-[/usr/local/hadoop]                                      
+└─$ sudo mkdir -p /app/hadoop/tmp
+                                                                          
+┌──(hduser㉿kali)-[/usr/local/hadoop]                                      
+└─$ sudo chown hduser:hadoop /app/hadoop/tmp                                                                                                  
+
+┌──(hduser㉿kali)-[/usr/local/hadoop]                                      
+└─$ cd                                                                     
+                                                                        
+┌──(hduser㉿kali)-[~]                                                      
+└─$ sudo nano /usr/local/hadoop/etc/hadoop/core-site.xml  
+
+<configuration>
+<property>
+<name>hadoop.tmp.dir</name>
+<value>/app/hadoop/tmp</value>
+<description>A base for other temporary
+directories.</description>
+</property>
+<property>
+<name>fs.default.name</name>
+<value>hdfs://localhost:54310</value>
+<description>The name of the default file system.
+A URI whose
+scheme and authority determine the FileSystem implementation.
+The
+uri's scheme determines the config property (fs.SCHEME.impl)
+naming
+the FileSystem implementation class.
+used to
+The uri's authority is
+determine the host, port, etc. for a filesystem.</description>
+</property>
+</configuration> 
+                 
+                                                                       
+
+┌──(hduser㉿kali)-[~]
+└─$ sudo nano /usr/local/hadoop/etc/hadoop/mapred-site.xml     
+
+<configuration>
+<property>
+<name>mapred.job.tracker</name>
+<value>localhost:54311</value>
+<description>The host and port that the MapReduce job tracker
+runs
+at.
+If "local", then jobs are run in-process as a single map
+and reduce task.
+</description>
+</property>
+</configuration>
+        
+
+
+
+
+┌──(hduser㉿kali)-[~]
+└─$ sudo mkdir -p /usr/local/hadoop_store/hdfs/datanode
+
+┌──(hduser㉿kali)-[~]
+└─$ sudo mkdir -p /usr/local/hadoop_store/hdfs/namenode                
+
+┌──(hduser㉿kali)-[~]
+└─$ sudo chown -R hduser:hadoop /usr/local/hadoop_store                    
+
+
+
+
+
+
+┌──(hduser㉿kali)-[~]
+└─$ sudo nano /usr/local/hadoop/etc/hadoop/hdfs-site.xml
+
+<configuration>
+<property>
+<name>dfs.replication</name>
+<value>1</value>
+<description>Default block replication.
+The actual number of replications can be specified when the
+file is created.
+The default is used if replication is not specified in create
+time.
+</description>
+</property>
+<property>
+<name>dfs.block.size</name>
+<value>1048576</value>
+</property>
+<property>
+<name>dfs.namenode.name.dir</name>
+<value>file:/usr/local/hadoop_store/hdfs/namenode</value>
+</property>
+<property>
+<name>dfs.datanode.data.dir</name>
+<value>file:/usr/local/hadoop_store/hdfs/datanode</value>
+</property>
+</configuration>
+
+
+
+
+
+┌──(hduser㉿kali)-[~]
+└─$ start-dfs.sh
+Starting namenodes on [localhost]
+localhost: ssh: connect to host localhost port 22: Connection refused
+Starting datanodes
+localhost: ssh: connect to host localhost port 22: Connection refused
+Starting secondary namenodes [kali]
+kali: ssh: connect to host kali port 22: Connection refused
+Picked up _JAVA_OPTIONS: -Dawt.useSystemAAFontSettings=on -Dswing.aatext=true
+2022-11-13 11:20:43,303 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+
+┌──(hduser㉿kali)-[~]
+└─$ sudo su
+
+┌──(root㉿kali)-[/home/hduser]
+└─# cd
+                                                                           
+┌──(root㉿kali)-[~]
+└─# service ssh start
+                                                                           
+┌──(root㉿kali)-[~]
+└─# su hduser  
+      
+┌──(hduser㉿kali)-[/root]
+└─$ cd                                                                     
+
+┌──(hduser㉿kali)-[~]
+└─$ ssh localhost                                                          
+The authenticity of host 'localhost (::1)' can't be established.
+ED25519 key fingerprint is SHA256:HVWS/WDZyTNqWzrWTK88Ze5dijcqJ6qIUhgK71DFuzY.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added 'localhost' (ED25519) to the list of known hosts.
+hduser@localhost's password: 
+Linux kali 5.18.0-kali5-amd64 #1 SMP PREEMPT_DYNAMIC Debian 5.18.5-1kali6 (2022-07-07) x86_64
+
+The programs included with the Kali GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Kali GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+┌──(hduser㉿kali)-[~]
+└─$ start-dfs.sh
+Starting namenodes on [localhost]
+localhost: hduser@localhost: Permission denied (publickey,password).
+Starting datanodes
+localhost: hduser@localhost: Permission denied (publickey,password).
+Starting secondary namenodes [kali]
+kali: Warning: Permanently added 'kali' (ED25519) to the list of known hosts.
+kali: hduser@kali: Permission denied (publickey,password).
+2022-11-13 11:22:13,007 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+
+
+
+┌──(hduser㉿kali)-[~]
+└─$ ssh-keygen                                                             
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/hduser/.ssh/id_rsa): 
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /home/hduser/.ssh/id_rsa
+Your public key has been saved in /home/hduser/.ssh/id_rsa.pub
+The key fingerprint is:
+SHA256:/WM8/ZBUgde+bWhhfqbDXE+QyW6FZr4G2wWyM1P5mv4 hduser@kali
+The key's randomart image is:
++---[RSA 3072]----+
+|              ...|
+|             . .o|
+|             ..*.|
+|         .  . #.o|
+|        S .  @.Bo|
+|           o*oBoX|
+|            *%+%.|
+|           ..o@o.|
+|             o.oE|
++----[SHA256]-----+
+
+┌──(hduser㉿kali)-[~]
+└─$ start-dfs.sh                                                           
+Starting namenodes on [localhost]
+localhost: hduser@localhost: Permission denied (publickey,password).
+Starting datanodes
+localhost: hduser@localhost: Permission denied (publickey,password).
+Starting secondary namenodes [kali]
+kali: hduser@kali: Permission denied (publickey,password).
+2022-11-13 11:24:26,830 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+┌──(hduser㉿kali)-[~]
+└─$ sudo su
+[sudo] password for hduser: 
+
+┌──(root㉿kali)-[/home/hduser]
+└─# service ssh start
+                                                                           
+┌──(root㉿kali)-[/home/hduser]
+└─# su hduser  
+      
+┌──(hduser㉿kali)-[~]
+└─$ cat $HOME/.ssh/id_rsa.pub >> $HOME/.ssh/authorized_keys
+
+┌──(hduser㉿kali)-[~]
+└─$ ssh localhost                                                          
+Linux kali 5.18.0-kali5-amd64 #1 SMP PREEMPT_DYNAMIC Debian 5.18.5-1kali6 (2022-07-07) x86_64
+The programs included with the Kali GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+Kali GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+Last login: Sun Nov 13 11:21:47 2022 from ::1
+┌──(hduser㉿kali)-[~]
+└─$ start-dfs.sh                                                           
+Starting namenodes on [localhost]
+localhost: WARNING: /usr/local/hadoop/logs does not exist. Creating.
+Starting datanodes
+Starting secondary namenodes [kali]
+2022-11-13 11:28:39,083 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+┌──(hduser㉿kali)-[~]
+└─$ start-yarn.sh                                                          
+Starting resourcemanager
+Starting nodemanagers
+┌──(hduser㉿kali)-[~]
+└─$ jps                                                                    
+47686 Jps
+47548 NodeManager
+47021 DataNode
+47439 ResourceManager
+47183 SecondaryNameNode
+
+┌──(hduser㉿kali)-[~]
+└─$ hadoop namenode -format
+WARNING: Use of this script to execute namenode is deprecated.
+WARNING: Attempting to execute replacement "hdfs namenode" instead.
+
+2022-11-13 11:31:27,673 INFO namenode.NameNode: STARTUP_MSG: 
+/************************************************************
+
+STARTUP_MSG: Starting NameNode
+STARTUP_MSG:   host = kali/127.0.1.1
+STARTUP_MSG:   args = [-format]
+STARTUP_MSG:   version = 3.3.4
+STARTUP_MSG:   classpath = 1.jar:/usr/local/hadoop/share/hadoop/common/lib/protobuf-java-2.8.9.jar:/usr/local/hadoop/share/hadoop/common/lib/accessors-smart-==============================================================================================================================================================================================================
+2022-11-13 11:31:28,339 INFO util.GSet: VM type       = 64-bit
+2022-11-13 11:31:28,340 INFO util.GSet: 1.0% max memory 984 MB = 9.8 MB
+2022-11-13 11:31:28,340 INFO util.GSet: capacity      = 2^20 = 1048576 entries
+2022-11-13 11:31:28,341 INFO namenode.FSDirectory: ACLs 
+file /usr/local/hadoop_store/hdfs/namenode/current/fsimage.ckpt_0000000000000000000 of size 401 bytes saved in 0 seconds .
+
+2022-11-13 11:31:28,594 INFO namenode.NNStorageRetentionManager: Going to retain 1 images with txid >= 0
+
+2022-11-13 11:31:28,615 INFO namenode.FSNamesystem: Stopping services started for active state
+2022-11-13 11:31:28,615 INFO namenode.FSNamesystem: Stopping services started for standby state
+2022-11-13 11:31:28,624 INFO namenode.FSImage: FSImageSaver clean checkpoint: txid=0 when meet shutdown.
+2022-11-13 11:31:28,624 INFO namenode.NameNode: SHUTDOWN_MSG: 
+/************************************************************
+SHUTDOWN_MSG: Shutting down NameNode at kali/127.0.1.1
+************************************************************/
+
+┌──(hduser㉿kali)-[~]
+└─$ stop-all.sh                                                            
+WARNING: Stopping all Apache Hadoop daemons as hduser in 10 seconds.
+WARNING: Use CTRL-C to abort.
+Stopping namenodes on [localhost]
+Stopping datanodes
+Stopping secondary namenodes [kali]
+2022-11-13 11:32:03,922 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Stopping nodemanagers
+Stopping resourcemanager
+
+┌──(hduser㉿kali)-[~]	
+└─$ start-all.sh
+WARNING: Attempting to start all Apache Hadoop daemons as hduser in 10 seconds.
+WARNING: This is not a recommended production deployment configuration.
+WARNING: Use CTRL-C to abort.
+Starting namenodes on [localhost]
+Starting datanodes
+Starting secondary namenodes [kali]
+2022-11-13 11:32:58,298 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Starting resourcemanager
+Starting nodemanagers
+
+┌──(hduser㉿kali)-[~]
+└─$ jps                                                                    
+50306 SecondaryNameNode
+52261 Jps
+49991 NameNode
+50632 NodeManager
+50110 DataNode
+50510 ResourceManager
+http://localhost:9870/
+HADOOP TRASH
+
+┌──(hduser㉿kali)-[~]
+└─$ touch example.desktop
+
+┌──(hduser㉿kali)-[~]
+└─$ ls
+example.desktop  hadoop-3.3.4  hadoop-3.3.4.tar.gz
+
+┌──(hduser㉿kali)-[~]
+└─$ hadoop fs -put example.desktop /
+2022-11-13 16:23:00,539 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+
+┌──(hduser㉿kali)-[~]
+└─$ jps
+50306 SecondaryNameNode
+49991 NameNode
+50632 NodeManager
+123519 Jps
+50110 DataNode
+50510 ResourceManager
+
+┌──(hduser㉿kali)-[~]
+└─$ ls
+example.desktop  hadoop-3.3.4  hadoop-3.3.4.tar.gz
+
+┌──(hduser㉿kali)-[~]
+└─$ cd /usr/local/hadoop/etc/hadoop
+
+┌──(hduser㉿kali)-[/usr/local/hadoop/etc/hadoop]
+└─$ ls
+capacity-scheduler.xml            kms-log4j.properties
+configuration.xsl                 kms-site.xml
+container-executor.cfg            log4j.properties
+core-site.xml                     mapred-env.cmd
+hadoop-env.cmd                    mapred-env.sh
+hadoop-env.sh                     mapred-queues.xml.template
+hadoop-metrics2.properties        mapred-site.xml
+hadoop-policy.xml                 shellprofile.d
+hadoop-user-functions.sh.example  ssl-client.xml.example
+hdfs-rbf-site.xml                 ssl-server.xml.example
+hdfs-site.xml                     user_ec_policies.xml.template
+httpfs-env.sh                     workers
+httpfs-log4j.properties           yarn-env.cmd
+httpfs-site.xml                   yarn-env.sh
+kms-acls.xml                      yarnservice-log4j.properties
+kms-env.sh                        yarn-site.xml
+
+┌──(hduser㉿kali)-[/usr/local/hadoop/etc/hadoop]
+└─$ sudo nano core-site.xml                                                  
+[sudo] password for hduser: At the end 
+
+<property>
+<name>fs.trash.interval</name>
+<value>3</value>
+</property>
+<property>
+<name>fs.trash.checkpoint.interval</name>
+<value>1</value>
+</property>  
+┌──(hduser㉿kali)-[/usr/local/hadoop/etc/hadoop]
+└─$ sudo nano hdfs-site.xml       
+
+<property>
+<name>dfs.permissions.enabled</name>
+<value>true</value>
+</property>                                  
+
+┌──(hduser㉿kali)-[/usr/local/hadoop/etc/hadoop]
+└─$ sudo nano core-site.xml   
+
+<property>
+<name>hadoop.http.staticuser.user</name>
+<value>hduser</value>
+</property>                                             
+
+┌──(hduser㉿kali)-[/usr/local/hadoop/etc/hadoop]
+└─$ stop-all.sh                                                              
+WARNING: Stopping all Apache Hadoop daemons as hduser in 10 seconds.
+WARNING: Use CTRL-C to abort.
+Stopping namenodes on [localhost]
+Stopping datanodes
+Stopping secondary namenodes [kali]
+2022-11-13 16:32:26,229 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Stopping nodemanagers
+Stopping resourcemanager
+
+┌──(hduser㉿kali)-[/usr/local/hadoop/etc/hadoop]
+└─$ start-all.sh                                                             
+WARNING: Attempting to start all Apache Hadoop daemons as hduser in 10 seconds.
+WARNING: This is not a recommended production deployment configuration.
+WARNING: Use CTRL-C to abort.
+Starting namenodes on [localhost]
+Starting datanodes
+Starting secondary namenodes [kali]
+2022-11-13 16:33:22,936 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Starting resourcemanager
+Starting nodemanagers
+
+┌──(hduser㉿kali)-[/usr/local/hadoop/etc/hadoop]
+└─$ hadoop fs -rm /example.desktop
+2022-11-13 16:36:52,986 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+2022-11-13 16:36:53,605 INFO fs.TrashPolicyDefault: Moved: 'hdfs://localhost:54310/example.desktop' to trash at: hdfs://localhost:54310/user/hduser/.Trash/Current/example.desktop
+
+┌──(hduser㉿kali)-[/usr/local/hadoop/etc/hadoop]
+└─$ hadoop fs -ls                                                            
+2022-11-13 16:40:30,579 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Found 1 items
+drwx------   - hduser supergroup          0 2022-11-13 16:40 .Trash
+
+┌──(hduser㉿kali)-[/usr/local/hadoop/etc/hadoop]
+└─$ touch example.omk
+
+┌──(hduser㉿kali)-[/usr/local/hadoop/etc/hadoop]
+└─$ hadoop fs -put example.omk /                                             
+2022-11-13 16:47:01,430 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+
+┌──(hduser㉿kali)-[/usr/local/hadoop/etc/hadoop]
+└─$ hadoop fs -rm /example.omk 
+2022-11-13 16:48:17,532 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+2022-11-13 16:48:18,183 INFO fs.TrashPolicyDefault: Moved: 'hdfs://localhost:54310/example.omk' to trash at: hdfs://localhost:54310/user/hduser/.Trash/Current/example.omk
+
+┌──(hduser㉿kali)-[/usr/local/hadoop/etc/hadoop]
+└─$ touch example.omkant
+
+┌──(hduser㉿kali)-[/usr/local/hadoop/etc/hadoop]
+└─$ hadoop fs -put example.omkant /                                          
+2022-11-13 16:50:13,669 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+
+┌──(hduser㉿kali)-[/usr/local/hadoop/etc/hadoop]
+└─$ jps                                                                      
+126691 DataNode
+132295 Jps
+126599 NameNode
+127161 ResourceManager
+127272 NodeManager
+126878 SecondaryNameNode
+
+┌──(hduser㉿kali)-[/usr/local/hadoop/etc/hadoop]
+└─$ stop-dfs.sh
+Stopping namenodes on [localhost]
+Stopping datanodes
+Stopping secondary namenodes [kali]
+2022-11-13 16:51:03,323 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+
+┌──(hduser㉿kali)-[/usr/local/hadoop/etc/hadoop]
+└─$ jps
+ 135749 jps
+
+=============================================================================================================================================  
+
+Installing Hadoop on Ubuntu 20.04
+• Install java
+1. sudo apt-get update
+2. sudo apt-get install default-jdk
+Check java is installed or not
+• Create Hadoop Group and user
+1. sudo addgroup hadoop
+2. sudo adduser --ingroup hadoop hduser
+3. groups hduser
+• Install SSH
+1. sudo apt-get install ssh
+check ssh and sshd
+• Create and setud SSH
+1. su hduser
+2. ssh-keygen
+3. cat $HOME/.ssh/id_rsa.pub >> $HOME/.ssh/authorized_keys
+4. ssh localhost
+• Install Hadoop
+Download Hadoop
+1. tar xvzf hadoop-3.3.4.tar.gz
+2. sudo -v
+3. su mainuser
+4. sudo adduser hduser sudo
+5. su hduser
+6. sudo mkdir -p /usr/local/hadoop
+7. cd hadoop-3.3.4
+8. sudo mv * /usr/local/hadoop
+9. sudo chown -R hduser:hadoop /usr/local/hadoop
+• Setup Configuration Files:-
+Open New Terminal Window:- update-alternatives --config java
+1. sudo nano ~/.bashrc
+#HADOOP VARIABLES START
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-i386
+export HADOOP_INSTALL=/usr/local/hadoop
+export PATH=$PATH:$HADOOP_INSTALL/bin
+export PATH=$PATH:$HADOOP_INSTALL/sbin
+export HADOOP_MAPRED_HOME=$HADOOP_INSTALL
+export HADOOP_COMMON_HOME=$HADOOP_INSTALL
+export HADOOP_HDFS_HOME=$HADOOP_INSTALL
+export YARN_HOME=$HADOOP_INSTALL
+ export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_INSTALL/lib/native
+export HADOOP_OPTS="-Djava.library.path=$HADOOP_INSTALL/lib"
+#HADOOP VARIABLES END
+2. source ~/.bashrc
+3. sudo nano /usr/local/hadoop/etc/hadoop/hadoop-env.sh
+export JAVA_HOME=”JAVA PATH”
+4. sudo mkdir -p /app/hadoop/tmp
+5. sudo chown hduser:hadoop /app/hadoop/tmp
+6. sudo nano /usr/local/hadoop/etc/hadoop/core-site.xml
+<configuration>
+<property>
+<name>hadoop.tmp.dir</name>
+<value>/app/hadoop/tmp</value>
+<description>A base for other temporary
+directories.</description>
+</property>
+<property>
+<name>fs.default.name</name>
+<value>hdfs://localhost:54310</value>
+<description>The name of the default file system.
+A URI whose
+scheme and authority determine the FileSystem implementation.
+The
+uri's scheme determines the config property (fs.SCHEME.impl)
+naming
+the FileSystem implementation class.
+used to
+The uri's authority is
+determine the host, port, etc. for a filesystem.</description>
+</property>
+</configuration>
+7. sudo nano /usr/local/hadoop/etc/hadoop/mapred-site.xml
+<configuration>
+<property>
+<name>mapred.job.tracker</name>
+<value>localhost:54311</value>
+<description>The host and port that the MapReduce job tracker
+runs
+at.
+If "local", then jobs are run in-process as a single map
+and reduce task.
+</description>
+</property>
+</configuration>
+8. sudo mkdir -p /usr/local/hadoop_store/hdfs/namenode
+9. sudo mkdir -p /usr/local/hadoop_store/hdfs/datanode
+10. sudo chown -R hduser:hadoop /usr/local/hadoop_store
+11. sudo nano /usr/local/hadoop/etc/hadoop/hdfs-site.xml
+<configuration>
+<property>
+<name>dfs.replication</name>
+<value>1</value>
+<description>Default block replication.
+The actual number of replications can be specified when the
+file is created.
+The default is used if replication is not specified in create
+time.
+</description>
+</property>
+<property>
+<name>dfs.block.size</name>
+<value>1048576</value>
+</property>
+<property>
+<name>dfs.namenode.name.dir</name>
+<value>file:/usr/local/hadoop_store/hdfs/namenode</value>
+</property>
+<property>
+<name>dfs.datanode.data.dir</name>
+<value>file:/usr/local/hadoop_store/hdfs/datanode</value>
+</property>
+</configuration>
+12. hadoop namenode -format
+13. su mainuser(om)
+14. cd /usr/local/hadoop/sbin
+15. ls
+16. sudo su hduser
+17. start-dfs.sh
+18. start-yarn.sh
+19. jps
+20 stop-yarn.sh
+21. stop-dfs.sh
+• Setting up Trash:-
+1. touch example.desktop
+hadoop fs -put example.desktop /
+2. Go to web UI
+◦ http://localhost:9870/
+3. cd /usr/local/hadoop/etc/hadoop/
+4. sudo nano core-site.xml
+<property>
+<name>fs.trash.interval</name>
+<value>3</value>
+</property>
+<property>
+<name>fs.trash.checkpoint.interval</name>
+<value>1</value>
+</property>
+22. hadoop fs –chmod –R 755 /user
+Permissions:-
+hdfs-site.xml:-
+<property>
+<name>dfs.permissions.enabled</name>
+<value>true</value>
+</property>
+core-site.xml:-
+<property>
+<name>hadoop.http.staticuser.user</name>
+<value>hduser</value>
+</property>
+
+
+================================================================================================================================================
+
+
+
+Hadoop installation done 
+
+
+Hadoop Clustering:- 
+
+Restart Hadoop 1, 2 
+
