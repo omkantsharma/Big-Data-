@@ -1,0 +1,41 @@
+  1  pwd
+    2  mkdir
+    3  ls
+    4  mkdir test
+    5  ls
+    6  cd test
+    7  ls
+    8  ls -l
+    9  gedit file.txt
+   10  ls -l
+   11  ls
+   12  cat file.txt
+   13  cat file.txt-
+   14* 
+   15  cat file.txt-
+   16  cat file.txt
+   17  hadoop
+   18  ls -l
+   19  hadoop fs mkdir /test
+   20  hadoop fs -mkdir /test
+   21  hadoop fs -ls /test
+   22  hadoop fs -ls /
+   23  hadoop fs -lsr /
+   24  hadoop fs -lsr /test
+   25  hadoop fs -ls R /test
+   26  hadoop fs -lsr /test
+   27  hadoop fs ls -R /test
+   28  hadoop fs -lsr /
+   29  hadoop fs -lsr /test
+   30  hadoop fs -put f /test
+   31  hadoop fs -put file.txt /test/file.txt
+   32  hadoop fs -cat/test/file.txt
+   33  hadoop fs -cat /test/file.txt
+   34  hadoop fs -get /test/file.txt ./file1.txt
+   35  hadoop fs -get /test/file.txt ./file.txt
+   36  ls l
+   37  ls lls -l
+   38  ls ls -l
+   39  ls -l
+   40  cat file1.txt
+   41  history
