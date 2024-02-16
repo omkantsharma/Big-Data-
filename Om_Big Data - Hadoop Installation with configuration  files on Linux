@@ -228,7 +228,7 @@ The key's randomart image is:
 ┌──(kali㉿kali)-[~/Desktop/share]
 └─$ ssh localhost
 ssh: connect to host localhost port 22: Connection refused
-                                                                             
+https://www.kali.org/docs/general-use/enabling-root/                                                                            
 ┌──(kali㉿kali)-[~/Desktop/share]
 └─$ service ssh start        
 Failed to start ssh.service: Access denied
@@ -537,6 +537,9 @@ individual files in /usr/share/doc/*/copyright.
 
 Kali GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
 permitted by applicable law.
+
+https://www.kali.org/docs/general-use/enabling-root/
+
 ┌──(hduser㉿kali)-[~]
 └─$ start-dfs.sh
 Starting namenodes on [localhost]
